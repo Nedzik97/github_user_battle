@@ -1,0 +1,33 @@
+ul {
+	padding: 0;
+	margin: 20px 0 40px 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: #d0021b;
+	font-size: 25px;
+	letter-spacing: 0.8px;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.navigation {
+	display: flex;
+	margin-left: 25px;
+}
+
+.navigation li {
+	margin-right: 15px;
+}
+
+.active {
+	font-weight: 700;
+}

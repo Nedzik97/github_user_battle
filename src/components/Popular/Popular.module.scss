@@ -1,0 +1,55 @@
+.languages {
+	display: flex;
+	justify-content: center;
+	padding: 0;
+}
+
+.languages li {
+	margin: 10px;
+	font-weight: 700;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.popularList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+.popularItem {
+	margin: 20px;
+	text-align: center;
+}
+
+.popularRank {
+	font-size: 20px;
+	margin: 10px;
+}
+
+.spaceListItem {
+	margin-bottom: 7px;
+}
+
+.avatar {
+	width: 150px;
+	border-radius: 50%;
+}
+
+a {
+	text-decoration: none;
+	color: #d0021b;
+}
+
+
+
+
+
