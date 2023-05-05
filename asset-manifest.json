@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Github_user_battle/static/css/main.77a97da9.css",
+    "main.js": "/Github_user_battle/static/js/main.0818498f.js",
+    "index.html": "/Github_user_battle/index.html",
+    "main.77a97da9.css.map": "/Github_user_battle/static/css/main.77a97da9.css.map",
+    "main.0818498f.js.map": "/Github_user_battle/static/js/main.0818498f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.77a97da9.css",
+    "static/js/main.0818498f.js"
+  ]
+}
