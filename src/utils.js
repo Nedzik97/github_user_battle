@@ -1,9 +1,3 @@
-export const popularRepos = (lang) => {
-  return fetch(
-    `https://api.github.com/search/repositories?q=stars:>1+language:${lang}&sort=stars&order=desc&type=Repositories`
-  ).then((res) => res.json());
-};
-
 export const sumValuesUser = (userProfile) => {
   let sum = 0;
   for (let key in userProfile) {
@@ -15,8 +9,5 @@ export const sumValuesUser = (userProfile) => {
 };
 
 export const compareUsers = (firstProfilePoints, secondProfilePoints) => {
-  if (firstProfilePoints > secondProfilePoints) {
-    return "firstUser";
-  }
-  return "secondUser";
+  return firstProfilePoints > secondProfilePoints ? "firstUser" : "secondUser";
 };

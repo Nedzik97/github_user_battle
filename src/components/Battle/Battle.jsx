@@ -8,34 +8,26 @@ export const Battle = () => {
   const [isBattle, setIsBattle] = useState(false);
   const [winner, setWinner] = useState();
   const {
-    user: firstUser,
-    setUser: setFirstUser,
-    searchUserAvatar: searchFirstuserAvatar,
+    input: firstUser,
+    setInput: setFirstUser,
     userProfile: firstUserProfile,
     searchUserProfile: searchFirstUserProfile,
   } = SearchUser();
 
   const {
-    user: secondUser,
-    setUser: setSecondUser,
-    searchUserAvatar: searchSecondUserAvatar,
+    input: secondUser,
+    setInput: setSecondUser,
     userProfile: secondUserProfile,
     searchUserProfile: searchSecondUserProfile,
   } = SearchUser();
 
   const getBattle = () => {
-    Promise.all([
-      searchFirstUserProfile(firstUser.inputValue),
-      searchSecondUserProfile(secondUser.inputValue),
-    ]).then(() => {
-      setIsBattle(true);
-
-      const winner = compareUsers(
-        sumValuesUser(firstUserProfile),
-        sumValuesUser(secondUserProfile)
-      );
-      setWinner(winner);
-    });
+    setIsBattle(true);
+    const winner = compareUsers(
+      sumValuesUser(firstUserProfile),
+      sumValuesUser(secondUserProfile)
+    );
+    setWinner(winner);
   };
 
   return (
@@ -45,8 +37,8 @@ export const Battle = () => {
           usernamePlayer={"Player One"}
           user={firstUser}
           setUser={setFirstUser}
-          searchUsers={searchFirstuserAvatar}
           userProfile={firstUserProfile}
+          searchUserProfile={searchFirstUserProfile}
           isBattle={isBattle}
           isWinner={winner === "firstUser"}
         />
@@ -54,8 +46,8 @@ export const Battle = () => {
           usernamePlayer={"Player Two"}
           user={secondUser}
           setUser={setSecondUser}
-          searchUsers={searchSecondUserAvatar}
           userProfile={secondUserProfile}
+          searchUserProfile={searchSecondUserProfile}
           isBattle={isBattle}
           isWinner={winner === "secondUser"}
         />

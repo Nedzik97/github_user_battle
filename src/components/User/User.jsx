@@ -5,15 +5,15 @@ export const User = ({
   usernamePlayer,
   user,
   setUser,
-  searchUsers,
   userProfile,
+  searchUserProfile,
   isBattle,
   isWinner,
 }) => {
   const handleForm = (event) => {
     event.preventDefault();
     if (user.inputValue) {
-      searchUsers(user.inputValue);
+      searchUserProfile(user.inputValue);
     }
   };
 
@@ -51,10 +51,10 @@ export const User = ({
           <li className={styles.userItems}>
             <img
               className={styles.avatar}
-              src={user.avatar}
+              src={userProfile.avatar}
               alt={user.inputValue}
             ></img>
-            <h2>@{user.inputValue}</h2>
+            <h2>@{userProfile.name}</h2>
             <button
               onClick={() => handleResetButton()}
               className={styles.reset}
@@ -75,7 +75,7 @@ export const User = ({
           <img
             className={styles.avatar}
             src={userProfile.avatar}
-            alt={user.inputValue}
+            alt={userProfile.name}
           ></img>
           <h2>@{userProfile.login}</h2>
         </li>

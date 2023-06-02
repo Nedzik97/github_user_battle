@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { Loading } from "../Loading/Loading";
-import { popularRepos } from "../../utils";
+import { fetchPopularRepos } from "../../api/api.js";
 import styles from "./Popular.module.scss";
 
-export const Popular = () => {
-  const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
+const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
 
 export const Popular = () => {
- const [lang, setLang] = useState(languages.all);
-
   const [popularLang, setPopularLang] = useState({
     selectedLanguage: "All",
     repos: [],
@@ -22,7 +19,7 @@ export const Popular = () => {
   };
 
   useEffect(() => {
-    popularRepos(popularLang.selectedLanguage).then((repos) => {
+    fetchPopularRepos(popularLang.selectedLanguage).then((repos) => {
       setPopularLang((prev) => ({
         ...prev,
         repos: repos.items,

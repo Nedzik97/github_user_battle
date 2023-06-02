@@ -5,7 +5,7 @@ import { Popular } from "../Popular/Popular";
 import { Navigation } from "../Navigation/Navigation";
 import styles from "./App.module.scss";
 
-function App() {
+const App = () => {
   return (
     <div className={styles.App}>
       <div className={styles.container}>
@@ -18,6 +18,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

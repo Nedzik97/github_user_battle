@@ -1,9 +1,8 @@
 import { useState } from "react";
-
+import { fetchUserProfile } from "../api/api";
 export const SearchUser = () => {
-  const [user, setUser] = useState({
+  const [input, setInput] = useState({
     inputValue: "",
-    avatar: "",
     isLoaded: false,
   });
 
@@ -17,33 +16,25 @@ export const SearchUser = () => {
     isClickBattle: false,
   });
 
-  const searchUserAvatar = (search) => {
-    setUser((prev) => ({
-      ...prev,
-      isLoaded: true,
-      avatar: `https://github.com/${search}.png`,
-    }));
-  };
-
   const searchUserProfile = (search) => {
-    return fetch(`https://api.github.com/users/${search}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setUserProfile({
-          avatar: res.avatar_url,
-          login: res.login,
-          name: res.name,
-          followers: res.followers,
-          following: res.following,
-          publicRepos: res.public_repos,
-        });
+    return fetchUserProfile(search).then((res) => {
+      setUserProfile({
+        avatar: res.avatar_url,
+        login: res.login,
+        name: res.name,
+        followers: res.followers,
+        following: res.following,
+        publicRepos: res.public_repos,
       });
+      setInput({
+        isLoaded: true,
+      });
+    });
   };
 
   return {
-    user,
-    setUser,
-    searchUserAvatar,
+    input,
+    setInput,
     userProfile,
     searchUserProfile,
   };

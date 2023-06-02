@@ -1,42 +1,46 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import cx from "classnames";
 import styles from "./Navigation.module.scss";
 
 export const Navigation = () => {
-  const [isCurrentPage, setIsCurrentPage] = useState("Home");
-  const handleSwitchPage = (page) => {
-    setIsCurrentPage(page);
-  };
-
   return (
     <div>
       <ul className={styles.navigation}>
         <li>
-          <Link
+          <NavLink
             to="/"
-            className={isCurrentPage === "Home" ? `${styles.active}` : null}
-            onClick={() => handleSwitchPage("Home")}
+            className={({ isActive }) =>
+              cx({
+                [styles.activeLink]: isActive,
+              })
+            }
           >
             Home
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/Battle"
-            className={isCurrentPage === "Battle" ? `${styles.active}` : null}
-            onClick={() => handleSwitchPage("Battle")}
+            className={({ isActive }) =>
+              cx({
+                [styles.activeLink]: isActive,
+              })
+            }
           >
             Battle
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/Popular"
-            className={isCurrentPage === "Popular" ? `${styles.active}` : null}
-            onClick={() => handleSwitchPage("Popular")}
+            className={({ isActive }) =>
+              cx({
+                [styles.activeLink]: isActive,
+              })
+            }
           >
             Popular
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>
