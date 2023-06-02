@@ -20,7 +20,7 @@ export const Navigation = () => {
         </li>
         <li>
           <NavLink
-            to="/Battle"
+            to="/battle"
             className={({ isActive }) =>
               cx({
                 [styles.activeLink]: isActive,
@@ -32,7 +32,7 @@ export const Navigation = () => {
         </li>
         <li>
           <NavLink
-            to="/Popular"
+            to="/popular"
             className={({ isActive }) =>
               cx({
                 [styles.activeLink]: isActive,

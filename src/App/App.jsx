@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "../Home/Home";
-import { Battle } from "../Battle/Battle";
-import { Popular } from "../Popular/Popular";
-import { Navigation } from "../Navigation/Navigation";
+import { Home } from "../components/Home/Home";
+import { Battle } from "../components/Battle/Battle";
+import { Popular } from "../components/Popular/Popular";
+import { Navigation } from "../components/Navigation/Navigation";
 import styles from "./App.module.scss";
 
 const App = () => {

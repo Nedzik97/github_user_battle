@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 export const User = ({
   usernamePlayer,
-  user,
-  setUser,
+  input,
+  setInput,
   userProfile,
   searchUserProfile,
   isBattle,
@@ -12,30 +12,30 @@ export const User = ({
 }) => {
   const handleForm = (event) => {
     event.preventDefault();
-    if (user.inputValue) {
-      searchUserProfile(user.inputValue);
+    if (input.inputValue) {
+      searchUserProfile(input.inputValue);
     }
   };
 
   const handleChangeInput = (e) => {
-    setUser((prev) => ({
+    setInput((prev) => ({
       ...prev,
       inputValue: e.target.value,
     }));
   };
 
   const handleResetButton = () => {
-    setUser((prev) => ({ ...prev, isLoaded: false, inputValue: "" }));
+    setInput((prev) => ({ ...prev, isLoaded: false, inputValue: "" }));
   };
 
   if (!isBattle) {
     return (
       <div>
-        {!user.isLoaded && (
+        {!input.isLoaded && (
           <form className={styles.player} onSubmit={(e) => handleForm(e)}>
             <label htmlFor="username">{usernamePlayer}</label>
             <input
-              value={user.inputValue}
+              value={input.inputValue}
               onInput={(e) => handleChangeInput(e)}
               id="username"
               type="text"
@@ -47,12 +47,12 @@ export const User = ({
             </button>
           </form>
         )}
-        {user.isLoaded && (
+        {input.isLoaded && (
           <li className={styles.userItems}>
             <img
               className={styles.avatar}
               src={userProfile.avatar}
-              alt={user.inputValue}
+              alt={userProfile.inputValue}
             ></img>
             <h2>@{userProfile.name}</h2>
             <button

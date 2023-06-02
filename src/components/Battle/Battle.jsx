@@ -1,42 +1,31 @@
-import { useState } from "react";
 import { User } from "../User/User";
-import { SearchUser } from "../../hooks/SearchUser";
-import { sumValuesUser, compareUsers } from "../../utils";
+import { useSearchUser } from "../../hooks/UseSearchUser";
+import { useBattle } from "../../hooks/UseBattle";
 import styles from "./Battle.module.scss";
 
 export const Battle = () => {
-  const [isBattle, setIsBattle] = useState(false);
-  const [winner, setWinner] = useState();
+  const { getBattle, isBattle, winner } = useBattle();
   const {
-    input: firstUser,
-    setInput: setFirstUser,
+    input: firstInput,
+    setInput: setFirstInput,
     userProfile: firstUserProfile,
     searchUserProfile: searchFirstUserProfile,
-  } = SearchUser();
+  } = useSearchUser();
 
   const {
-    input: secondUser,
-    setInput: setSecondUser,
+    input: secondInput,
+    setInput: setSecondInput,
     userProfile: secondUserProfile,
     searchUserProfile: searchSecondUserProfile,
-  } = SearchUser();
-
-  const getBattle = () => {
-    setIsBattle(true);
-    const winner = compareUsers(
-      sumValuesUser(firstUserProfile),
-      sumValuesUser(secondUserProfile)
-    );
-    setWinner(winner);
-  };
+  } = useSearchUser();
 
   return (
     <div>
       <div className={styles.battleContainer}>
         <User
           usernamePlayer={"Player One"}
-          user={firstUser}
-          setUser={setFirstUser}
+          input={firstInput}
+          setInput={setFirstInput}
           userProfile={firstUserProfile}
           searchUserProfile={searchFirstUserProfile}
           isBattle={isBattle}
@@ -44,15 +33,15 @@ export const Battle = () => {
         />
         <User
           usernamePlayer={"Player Two"}
-          user={secondUser}
-          setUser={setSecondUser}
+          input={secondInput}
+          setInput={setSecondInput}
           userProfile={secondUserProfile}
           searchUserProfile={searchSecondUserProfile}
           isBattle={isBattle}
           isWinner={winner === "secondUser"}
         />
       </div>
-      {firstUser.isLoaded && secondUser.isLoaded && !isBattle && (
+      {firstInput.isLoaded && secondInput.isLoaded && !isBattle && (
         <button
           onClick={() => getBattle()}
           className={styles.startBattle}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fetchUserProfile } from "../api/api";
-export const SearchUser = () => {
+export const useSearchUser = () => {
   const [input, setInput] = useState({
     inputValue: "",
     isLoaded: false,

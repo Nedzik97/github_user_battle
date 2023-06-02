@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Loading } from "../Loading/Loading";
 import { fetchPopularRepos } from "../../api/api.js";
+import cx from "classnames";
 import styles from "./Popular.module.scss";
 
 const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
@@ -32,11 +33,9 @@ export const Popular = () => {
       <ul className={styles.languages}>
         {languages.map((lang) => (
           <li
-            style={
-              lang === popularLang.selectedLanguage
-                ? { color: "#d0021b" }
-                : null
-            }
+            className={cx({
+              [styles.active]: lang === popularLang.selectedLanguage,
+            })}
             key={lang}
             onClick={() => updateLanguage(lang)}
           >
