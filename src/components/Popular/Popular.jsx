@@ -7,26 +7,28 @@ import styles from "./Popular.module.scss";
 const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
 
 export const Popular = () => {
-  const [popularLang, setPopularLang] = useState({
-    selectedLanguage: "All",
+  const [currentLanguage, setCurrentLanguages] = useState("All");
+  const [languageRepos, setLanguageRepos] = useState({
     repos: [],
+    isLoading: false,
+    error: undefined,
   });
 
-  const updateLanguage = (lang) => {
-    setPopularLang({
-      selectedLanguage: lang,
-      repos: [],
-    });
-  };
-
   useEffect(() => {
-    fetchPopularRepos(popularLang.selectedLanguage).then((repos) => {
-      setPopularLang((prev) => ({
-        ...prev,
-        repos: repos.items,
-      }));
-    });
-  }, [popularLang.selectedLanguage]);
+    setLanguageRepos((prev) => ({
+      ...prev,
+      isLoading: true,
+    }));
+    fetchPopularRepos(currentLanguage)
+      .then((repos) => {
+        setLanguageRepos((prev) => ({
+          ...prev,
+          repos: repos.items,
+          isLoading: false,
+        }));
+      })
+      .catch();
+  }, [currentLanguage]);
 
   return (
     <div className={styles.popularContainer}>
@@ -34,20 +36,20 @@ export const Popular = () => {
         {languages.map((lang) => (
           <li
             className={cx({
-              [styles.active]: lang === popularLang.selectedLanguage,
+              [styles.active]: lang === currentLanguage,
             })}
             key={lang}
-            onClick={() => updateLanguage(lang)}
+            onClick={() => setCurrentLanguages(lang)}
           >
             {lang}
           </li>
         ))}
       </ul>
-      {!popularLang.repos.length ? (
+      {languageRepos.isLoading ? (
         <Loading />
       ) : (
         <ul className={styles.popularList}>
-          {popularLang.repos.map((repos, index) => {
+          {languageRepos.repos.map((repos, index) => {
             return (
               <li key={repos.name} className={styles.popularItem}>
                 <div className={styles.popularRank}>#{index + 1}</div>

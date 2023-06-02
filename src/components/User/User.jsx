@@ -92,17 +92,14 @@ export const User = ({
 
 User.propTypes = {
   usernamePlayer: PropTypes.string.isRequired,
-  user: PropTypes.shape({
+  input: PropTypes.shape({
     inputValue: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
     isLoaded: PropTypes.bool.isRequired,
   }),
   setUser: PropTypes.shape({
     inputValue: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
     isLoaded: PropTypes.bool.isRequired,
   }),
-  searchUsers: PropTypes.func.isRequired,
   userProfile: PropTypes.shape({
     avatar: PropTypes.string.isRequired,
     login: PropTypes.string,
