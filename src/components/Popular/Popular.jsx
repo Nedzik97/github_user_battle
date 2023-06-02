@@ -5,6 +5,10 @@ import styles from "./Popular.module.scss";
 
 export const Popular = () => {
   const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
+
+export const Popular = () => {
+ const [lang, setLang] = useState(languages.all);
+
   const [popularLang, setPopularLang] = useState({
     selectedLanguage: "All",
     repos: [],
