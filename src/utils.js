@@ -11,3 +11,5 @@ export const sumValuesUser = (userProfile) => {
 export const compareUsers = (firstProfilePoints, secondProfilePoints) => {
   return firstProfilePoints > secondProfilePoints ? "firstUser" : "secondUser";
 };
+
+export const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];

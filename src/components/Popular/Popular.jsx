@@ -1,35 +1,12 @@
-import { useState, useEffect } from "react";
 import { Loading } from "../Loading/Loading";
-import { fetchPopularRepos } from "../../api/api.js";
+import { usePopularRepos } from "../../hooks/usePopularRepos";
+import { languages } from "../../utils";
 import cx from "classnames";
 import styles from "./Popular.module.scss";
 
-const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
-
 export const Popular = () => {
-  const [currentLanguage, setCurrentLanguages] = useState("All");
-  const [languageRepos, setLanguageRepos] = useState({
-    repos: [],
-    isLoading: false,
-    error: undefined,
-  });
-
-  useEffect(() => {
-    setLanguageRepos((prev) => ({
-      ...prev,
-      isLoading: true,
-    }));
-    fetchPopularRepos(currentLanguage)
-      .then((repos) => {
-        setLanguageRepos((prev) => ({
-          ...prev,
-          repos: repos.items,
-          isLoading: false,
-        }));
-      })
-      .catch();
-  }, [currentLanguage]);
-
+  const { languageRepos, setCurrentLanguages, currentLanguage } =
+    usePopularRepos();
   return (
     <div className={styles.popularContainer}>
       <ul className={styles.languages}>

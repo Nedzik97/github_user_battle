@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { fetchUserProfile } from "../api/api";
-export const useSearchUser = () => {
-  const [input, setInput] = useState({
-    inputValue: "",
-    isLoaded: false,
-  });
 
-  const [userProfile, setUserProfile] = useState({
-    avatar: "",
-    login: "",
-    name: "",
-    followers: null,
-    following: null,
-    publicRepos: null,
-    isClickBattle: false,
-  });
+const INITIAL_USER_PROFILE = {
+  avatar: "",
+  login: "",
+  name: "",
+  followers: null,
+  following: null,
+  publicRepos: null,
+  isLoaded: false,
+};
+
+export const useSearchUser = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [userProfile, setUserProfile] = useState(INITIAL_USER_PROFILE);
 
   const searchUserProfile = (search) => {
     return fetchUserProfile(search).then((res) => {
@@ -25,17 +24,21 @@ export const useSearchUser = () => {
         followers: res.followers,
         following: res.following,
         publicRepos: res.public_repos,
-      });
-      setInput({
         isLoaded: true,
       });
     });
   };
 
+  const handleResetButton = () => {
+    setUserProfile(INITIAL_USER_PROFILE);
+    setInputValue("");
+  };
+
   return {
-    input,
-    setInput,
+    inputValue,
+    setInputValue,
     userProfile,
     searchUserProfile,
+    handleResetButton,
   };
 };

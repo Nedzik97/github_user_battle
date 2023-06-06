@@ -1,53 +1,30 @@
+import { UserSearchForm } from "../User-search-form/User-search-form";
+import { UserProfile } from "../User-profile/User-profile";
 import styles from "./User.module.scss";
 import PropTypes from "prop-types";
 
 export const User = ({
   usernamePlayer,
-  input,
-  setInput,
-  userProfile,
-  searchUserProfile,
   isBattle,
   isWinner,
+  inputValue,
+  setInputValue,
+  searchUserProfile,
+  userProfile,
+  handleResetButton,
 }) => {
-  const handleForm = (event) => {
-    event.preventDefault();
-    if (input.inputValue) {
-      searchUserProfile(input.inputValue);
-    }
-  };
-
-  const handleChangeInput = (e) => {
-    setInput((prev) => ({
-      ...prev,
-      inputValue: e.target.value,
-    }));
-  };
-
-  const handleResetButton = () => {
-    setInput((prev) => ({ ...prev, isLoaded: false, inputValue: "" }));
-  };
-
   if (!isBattle) {
     return (
       <div>
-        {!input.isLoaded && (
-          <form className={styles.player} onSubmit={(e) => handleForm(e)}>
-            <label htmlFor="username">{usernamePlayer}</label>
-            <input
-              value={input.inputValue}
-              onInput={(e) => handleChangeInput(e)}
-              id="username"
-              type="text"
-              placeholder="github username"
-              autoComplete="off"
-            ></input>
-            <button className={styles.button} type="submit">
-              Submit
-            </button>
-          </form>
+        {!userProfile.isLoaded && (
+          <UserSearchForm
+            usernamePlayer={usernamePlayer}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            searchUserProfile={searchUserProfile}
+          />
         )}
-        {input.isLoaded && (
+        {userProfile.isLoaded && (
           <li className={styles.userItems}>
             <img
               className={styles.avatar}
@@ -67,27 +44,7 @@ export const User = ({
       </div>
     );
   }
-  return (
-    <div>
-      <h1 className={styles.header}>{isWinner ? "Winner" : "Loser"}</h1>
-      <div className={styles.userItems}>
-        <li>
-          <img
-            className={styles.avatar}
-            src={userProfile.avatar}
-            alt={userProfile.name}
-          ></img>
-          <h2>@{userProfile.login}</h2>
-        </li>
-        <ul className={styles.spaceListItem}>
-          <li>{userProfile.name}</li>
-          <li>Followers: {userProfile.followers}</li>
-          <li>Following: {userProfile.following}</li>
-          <li>Public Repos: {userProfile.publicRepos}</li>
-        </ul>
-      </div>
-    </div>
-  );
+  return <UserProfile isWinner={isWinner} userProfile={userProfile} />;
 };
 
 User.propTypes = {
