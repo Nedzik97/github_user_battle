@@ -5,13 +5,14 @@ export const useBattle = () => {
   const [isBattle, setIsBattle] = useState(false);
   const [winner, setWinner] = useState();
 
-  const getBattle = (userProfile) => {
+  const getBattle = (firstPlayer, secondPlayer) => {
     setIsBattle(true);
     const winner = compareUsers(
-      sumValuesUser(userProfile),
-      sumValuesUser(userProfile)
+      sumValuesUser(firstPlayer),
+      sumValuesUser(secondPlayer)
     );
     setWinner(winner);
   };
+
   return { getBattle, isBattle, winner };
 };

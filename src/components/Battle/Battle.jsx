@@ -1,59 +1,48 @@
 import { User } from "../User/User";
-import { useSearchUser } from "../../hooks/useSearchUser";
+import { useUserProfiles } from "../../hooks/useUserProfiles";
 import { useBattle } from "../../hooks/useBattle";
+import { players } from "../../utils";
 import styles from "./Battle.module.scss";
 
 export const Battle = () => {
   const { getBattle, isBattle, winner } = useBattle();
-  const {
-    inputValue: firstInput,
-    setInputValue: firstSetInputValue,
-    userProfile: firstUserProfile,
-    searchUserProfile: firstSearchUserProfile,
-    handleResetButton: firstHandleResetButton,
-  } = useSearchUser();
-
-  const {
-    inputValue: secondInput,
-    setInputValue: secondSetInputValue,
-    userProfile: secondUserProfile,
-    searchUserProfile: secondSearchUserProfile,
-    handleResetButton: secondHandleResetButton,
-  } = useSearchUser();
-
+  const { userProfiles, resetUserProfile, searchUserProfile } =
+    useUserProfiles();
+  const firstUserProfile = userProfiles?.[players.first];
+  const secondUserProfile = userProfiles?.[players.second];
   return (
     <div>
       <div className={styles.battleContainer}>
         <User
-          usernamePlayer={"Player One"}
-          inputValue={firstInput}
-          setInputValue={firstSetInputValue}
+          userName={players.first}
           userProfile={firstUserProfile}
-          searchUserProfile={firstSearchUserProfile}
-          handleResetButton={firstHandleResetButton}
+          resetUserProfiles={resetUserProfile}
+          searchUserProfile={searchUserProfile}
           isBattle={isBattle}
           isWinner={winner === "firstUser"}
         />
         <User
-          usernamePlayer={"Player Two"}
-          inputValue={secondInput}
-          setInputValue={secondSetInputValue}
+          userName={players.second}
           userProfile={secondUserProfile}
-          searchUserProfile={secondSearchUserProfile}
-          handleResetButton={secondHandleResetButton}
+          resetUserProfiles={resetUserProfile}
+          searchUserProfile={searchUserProfile}
           isBattle={isBattle}
           isWinner={winner === "secondUser"}
         />
       </div>
-      {firstUserProfile.isLoaded && secondUserProfile.isLoaded && !isBattle && (
-        <button
-          onClick={() => getBattle()}
-          className={styles.startBattle}
-          type="button"
-        >
-          Battle
-        </button>
-      )}
+      {firstUserProfile?.isLoaded &&
+        secondUserProfile?.isLoaded &&
+        !isBattle && (
+          <button
+            onClick={() =>
+              getBattle(firstUserProfile.profile, secondUserProfile.profile)
+            }
+            className={styles.startBattle}
+            type="button"
+          >
+            Battle
+          </button>
+        )}
     </div>
   );
 };

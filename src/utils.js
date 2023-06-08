@@ -13,3 +13,8 @@ export const compareUsers = (firstProfilePoints, secondProfilePoints) => {
 };
 
 export const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
+
+export const players = {
+  first: "Player One",
+  second: "Player Two",
+};

@@ -8,16 +8,16 @@ export const UserProfile = ({ isWinner, userProfile }) => {
         <li>
           <img
             className={styles.userAvatar}
-            src={userProfile.avatar}
-            alt={userProfile.name}
+            src={userProfile.profile.avatar}
+            alt={userProfile.profile.name}
           ></img>
-          <h2>@{userProfile.login}</h2>
+          <h2>@{userProfile.profile.login}</h2>
         </li>
         <ul className={styles.spaceListItem}>
-          <li>{userProfile.name}</li>
-          <li>Followers: {userProfile.followers}</li>
-          <li>Following: {userProfile.following}</li>
-          <li>Public Repos: {userProfile.publicRepos}</li>
+          <li>{userProfile.profile.name}</li>
+          <li>Followers: {userProfile.profile.followers}</li>
+          <li>Following: {userProfile.profile.following}</li>
+          <li>Public Repos: {userProfile.profile.publicRepos}</li>
         </ul>
       </div>
     </div>

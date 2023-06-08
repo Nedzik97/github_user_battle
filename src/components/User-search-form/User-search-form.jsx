@@ -1,19 +1,18 @@
 import styles from "./User-search-form.module.scss";
 
-export const UserSearchForm = ({ usernamePlayer, searchUserProfile }) => {
+export const UserSearchForm = ({ userName, searchUserProfile }) => {
   const handleForm = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const inputValue = formData.get("user");
-    console.log(inputValue);
     if (inputValue) {
-      searchUserProfile(inputValue);
+      searchUserProfile(userName, inputValue);
     }
   };
 
   return (
     <form className={styles.player} onSubmit={handleForm}>
-      <label htmlFor="username">{usernamePlayer}</label>
+      <label htmlFor="username">{userName}</label>
       <input
         id="username"
         type="text"
