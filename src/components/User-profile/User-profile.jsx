@@ -1,6 +1,6 @@
 import styles from "./User-profile.module.scss";
 
-export const UserProfile = (isWinner, userProfile) => {
+export const UserProfile = ({ isWinner, userProfile }) => {
   return (
     <div>
       <h1 className={styles.header}>{isWinner ? "Winner" : "Loser"}</h1>

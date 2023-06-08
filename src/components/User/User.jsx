@@ -7,8 +7,6 @@ export const User = ({
   usernamePlayer,
   isBattle,
   isWinner,
-  inputValue,
-  setInputValue,
   searchUserProfile,
   userProfile,
   handleResetButton,
@@ -19,8 +17,6 @@ export const User = ({
         {!userProfile.isLoaded && (
           <UserSearchForm
             usernamePlayer={usernamePlayer}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
             searchUserProfile={searchUserProfile}
           />
         )}

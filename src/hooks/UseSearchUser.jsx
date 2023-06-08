@@ -12,7 +12,7 @@ const INITIAL_USER_PROFILE = {
 };
 
 export const useSearchUser = () => {
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
   const [userProfile, setUserProfile] = useState(INITIAL_USER_PROFILE);
 
   const searchUserProfile = (search) => {
@@ -29,14 +29,14 @@ export const useSearchUser = () => {
     });
   };
 
-  const handleResetButton = () => {
+  const handleResetButton = (event) => {
     setUserProfile(INITIAL_USER_PROFILE);
-    setInputValue("");
+    // setInputValue("");
   };
 
   return {
-    inputValue,
-    setInputValue,
+    // inputValue,
+    // setInputValue,
     userProfile,
     searchUserProfile,
     handleResetButton,
