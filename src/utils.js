@@ -8,13 +8,15 @@ export const sumValuesUser = (userProfile) => {
   return sum;
 };
 
-export const compareUsers = (firstProfilePoints, secondProfilePoints) => {
-  return firstProfilePoints > secondProfilePoints ? "firstUser" : "secondUser";
-};
-
-export const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
-
 export const players = {
   first: "Player One",
   second: "Player Two",
 };
+
+export const compareUsers = (firstProfilePoints, secondProfilePoints) => {
+  return firstProfilePoints > secondProfilePoints
+    ? players.first
+    : players.second;
+};
+
+export const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];

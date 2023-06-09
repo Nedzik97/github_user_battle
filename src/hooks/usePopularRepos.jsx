@@ -3,23 +3,23 @@ import { fetchPopularRepos } from "../api/api";
 
 export const usePopularRepos = () => {
   const [currentLanguage, setCurrentLanguages] = useState("All");
-  const [languageRepos, setLanguageRepos] = useState({
+  const [languageInfo, setLanguageInfo] = useState({
     repos: [],
     isLoading: false,
   });
 
   useEffect(() => {
-    setLanguageRepos((prev) => ({
+    setLanguageInfo((prev) => ({
       ...prev,
       isLoading: true,
     }));
     fetchPopularRepos(currentLanguage).then((repos) => {
-      setLanguageRepos((prev) => ({
+      setLanguageInfo((prev) => ({
         ...prev,
         repos: repos.items,
         isLoading: false,
       }));
     });
   }, [currentLanguage]);
-  return { languageRepos, setCurrentLanguages, currentLanguage };
+  return { languageInfo, setCurrentLanguages, currentLanguage };
 };
