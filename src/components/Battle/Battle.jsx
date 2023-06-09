@@ -1,9 +1,26 @@
-import { User } from "../User/User-profile";
+import { UserProfile } from "../User-profile/User-profile";
 import { UserSearchForm } from "../User-search-form/User-search-form";
+import { UserPreview } from "../User-preview/User-preview";
 import { useUserProfiles } from "../../hooks/useUserProfiles";
 import { useBattle } from "../../hooks/useBattle";
 import { players } from "../../utils";
 import styles from "./Battle.module.scss";
+
+const Reset = ({ resetUserProfile, player }) => {
+  return (
+    <button
+      onClick={() => resetUserProfile(player)}
+      className={styles.reset}
+      type="button"
+    >
+      Reset
+    </button>
+  );
+};
+
+const BattleResult = ({ isWinner }) => {
+  return <h1 className={styles.header}>{isWinner ? "Winner" : "Loser"}</h1>;
+};
 
 export const Battle = () => {
   const { getBattle, isBattle, winner } = useBattle();
@@ -21,44 +38,52 @@ export const Battle = () => {
             searchUserProfile={searchUserProfile}
           />
         ) : (
-          <User
-            userId={players.first}
-            userProfile={firstUserProfile}
-            searchUserProfile={searchUserProfile}
-            isBattle={isBattle}
-            isWinner={winner === players.first}
-          >
-            <button
-              onClick={() => resetUserProfile(players.first)}
-              className={styles.reset}
-              type="button"
-            >
-              Reset
-            </button>
-          </User>
+          <div>
+            {!isBattle ? (
+              <UserProfile
+                userId={players.first}
+                userProfile={firstUserProfile}
+                searchUserProfile={searchUserProfile}
+              >
+                <Reset
+                  resetUserProfile={resetUserProfile}
+                  player={players.first}
+                ></Reset>
+              </UserProfile>
+            ) : (
+              <div>
+                <BattleResult isWinner={winner === players.first} />
+                <UserPreview userProfile={firstUserProfile} />
+              </div>
+            )}
+          </div>
         )}
+
         {!secondUserProfile?.isLoaded ? (
           <UserSearchForm
             userId={players.second}
             searchUserProfile={searchUserProfile}
           />
         ) : (
-          <User
-            userId={players.second}
-            userProfile={secondUserProfile}
-            resetUserProfiles={resetUserProfile}
-            searchUserProfile={searchUserProfile}
-            isBattle={isBattle}
-            isWinner={winner === players.second}
-          >
-            <button
-              onClick={() => resetUserProfile(players.second)}
-              className={styles.reset}
-              type="button"
-            >
-              Reset
-            </button>
-          </User>
+          <div>
+            {!isBattle ? (
+              <UserProfile
+                userId={players.second}
+                userProfile={secondUserProfile}
+                searchUserProfile={searchUserProfile}
+              >
+                <Reset
+                  resetUserProfile={resetUserProfile}
+                  player={players.second}
+                ></Reset>
+              </UserProfile>
+            ) : (
+              <div>
+                <BattleResult isWinner={winner === players.second} />
+                <UserPreview userProfile={secondUserProfile} />
+              </div>
+            )}
+          </div>
         )}
       </div>
       {firstUserProfile?.isLoaded &&
