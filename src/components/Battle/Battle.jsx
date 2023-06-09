@@ -1,4 +1,4 @@
-import { User } from "../User/User";
+import { User } from "../User/User-profile";
 import { UserSearchForm } from "../User-search-form/User-search-form";
 import { useUserProfiles } from "../../hooks/useUserProfiles";
 import { useBattle } from "../../hooks/useBattle";
@@ -15,29 +15,34 @@ export const Battle = () => {
   return (
     <div>
       <div className={styles.battleContainer}>
-        {!firstUserProfile?.isLoaded && (
+        {!firstUserProfile?.isLoaded ? (
           <UserSearchForm
             userId={players.first}
             searchUserProfile={searchUserProfile}
           />
-        )}
-        {firstUserProfile?.isLoaded && (
+        ) : (
           <User
             userId={players.first}
             userProfile={firstUserProfile}
-            resetUserProfiles={resetUserProfile}
             searchUserProfile={searchUserProfile}
             isBattle={isBattle}
             isWinner={winner === players.first}
-          />
+          >
+            <button
+              onClick={() => resetUserProfile(players.first)}
+              className={styles.reset}
+              type="button"
+            >
+              Reset
+            </button>
+          </User>
         )}
-        {!secondUserProfile?.isLoaded && (
+        {!secondUserProfile?.isLoaded ? (
           <UserSearchForm
             userId={players.second}
             searchUserProfile={searchUserProfile}
           />
-        )}
-        {secondUserProfile?.isLoaded && (
+        ) : (
           <User
             userId={players.second}
             userProfile={secondUserProfile}
@@ -45,7 +50,15 @@ export const Battle = () => {
             searchUserProfile={searchUserProfile}
             isBattle={isBattle}
             isWinner={winner === players.second}
-          />
+          >
+            <button
+              onClick={() => resetUserProfile(players.second)}
+              className={styles.reset}
+              type="button"
+            >
+              Reset
+            </button>
+          </User>
         )}
       </div>
       {firstUserProfile?.isLoaded &&

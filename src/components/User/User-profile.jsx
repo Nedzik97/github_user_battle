@@ -1,41 +1,36 @@
-import { UserProfile } from "../User-profile/User-profile";
 import styles from "./User.module.scss";
 // import PropTypes from "prop-types";
 
-export const User = ({
-  isBattle,
-  userId,
-  isWinner,
-  userProfile,
-  resetUserProfiles,
-}) => {
-  return isBattle ? (
-    <UserProfile isWinner={isWinner} userProfile={userProfile} />
-  ) : (
+export const User = ({ isBattle, isWinner, userProfile, children }) => {
+  return (
     <div>
-      {userProfile?.isLoaded && (
-        <li className={styles.userItems}>
+      {isBattle && (
+        <h1 className={styles.header}>{isWinner ? "Winner" : "Loser"}</h1>
+      )}
+      <div className={styles.userItems}>
+        <li>
           <img
-            className={styles.avatar}
+            className={styles.userAvatar}
             src={userProfile.profile.avatar}
             alt={userProfile.profile.name}
           ></img>
-          <h2>@{userProfile.profile.name}</h2>
-          <button
-            onClick={() => resetUserProfiles(userId)}
-            className={styles.reset}
-            type="button"
-          >
-            Reset
-          </button>
+          <h2>@{userProfile.profile.login}</h2>
         </li>
-      )}
+        {isBattle && (
+          <ul className={styles.spaceListItem}>
+            <li>{userProfile.profile.name}</li>
+            <li>Followers: {userProfile.profile.followers}</li>
+            <li>Following: {userProfile.profile.following}</li>
+            <li>Public Repos: {userProfile.profile.publicRepos}</li>
+          </ul>
+        )}
+      </div>
+      {children}
     </div>
   );
 };
 
 // User.propTypes = {
-//   userId: PropTypes.string.isRequired,
 //   userProfile: PropTypes.shape({
 //     profile: {
 //       avatar: PropTypes.string.isRequired,
