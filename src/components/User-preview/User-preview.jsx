@@ -1,6 +1,6 @@
 import styles from "./User-preview.module.scss";
 
-export const UserPreview = ({ userProfile }) => {
+export const UserPreview = ({ userProfile, children }) => {
   return (
     <div>
       <div className={styles.userItems}>
@@ -12,13 +12,8 @@ export const UserPreview = ({ userProfile }) => {
           ></img>
           <h2>@{userProfile.profile.login}</h2>
         </li>
-        <ul className={styles.spaceListItem}>
-          <li>{userProfile.profile.name}</li>
-          <li>Followers: {userProfile.profile.followers}</li>
-          <li>Following: {userProfile.profile.following}</li>
-          <li>Public Repos: {userProfile.profile.publicRepos}</li>
-        </ul>
       </div>
+      {children}
     </div>
   );
 };

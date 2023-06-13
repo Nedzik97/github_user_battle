@@ -39,23 +39,21 @@ export const Battle = () => {
           />
         ) : (
           <div>
-            {!isBattle ? (
-              <UserProfile
-                userId={players.first}
-                userProfile={firstUserProfile}
-                searchUserProfile={searchUserProfile}
-              >
+            {isBattle && <BattleResult isWinner={winner === players.first} />}
+            <UserPreview
+              userId={players.first}
+              userProfile={firstUserProfile}
+              searchUserProfile={searchUserProfile}
+            >
+              {!isBattle ? (
                 <Reset
                   resetUserProfile={resetUserProfile}
                   player={players.first}
                 ></Reset>
-              </UserProfile>
-            ) : (
-              <div>
-                <BattleResult isWinner={winner === players.first} />
-                <UserPreview userProfile={firstUserProfile} />
-              </div>
-            )}
+              ) : (
+                <UserProfile userProfile={firstUserProfile} />
+              )}
+            </UserPreview>
           </div>
         )}
 
@@ -66,23 +64,21 @@ export const Battle = () => {
           />
         ) : (
           <div>
-            {!isBattle ? (
-              <UserProfile
-                userId={players.second}
-                userProfile={secondUserProfile}
-                searchUserProfile={searchUserProfile}
-              >
+            {isBattle && <BattleResult isWinner={winner === players.second} />}
+            <UserPreview
+              userId={players.second}
+              userProfile={secondUserProfile}
+              searchUserProfile={searchUserProfile}
+            >
+              {!isBattle ? (
                 <Reset
                   resetUserProfile={resetUserProfile}
                   player={players.second}
                 ></Reset>
-              </UserProfile>
-            ) : (
-              <div>
-                <BattleResult isWinner={winner === players.second} />
-                <UserPreview userProfile={secondUserProfile} />
-              </div>
-            )}
+              ) : (
+                <UserProfile userProfile={secondUserProfile} />
+              )}
+            </UserPreview>
           </div>
         )}
       </div>
