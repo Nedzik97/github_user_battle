@@ -2,7 +2,7 @@
   "name": "search_github_api",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nedzik97.github.io/Github_user_battle/",
+  "homepage": "https://nedzik97.github.io/github_user_battle/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
