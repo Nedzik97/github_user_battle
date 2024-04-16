@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Github_user_battle/static/css/main.9f5b1e6e.css",
-    "main.js": "/Github_user_battle/static/js/main.afe86413.js",
-    "index.html": "/Github_user_battle/index.html",
-    "main.9f5b1e6e.css.map": "/Github_user_battle/static/css/main.9f5b1e6e.css.map",
-    "main.afe86413.js.map": "/Github_user_battle/static/js/main.afe86413.js.map"
+    "main.css": "/github_user_battle/static/css/main.9f5b1e6e.css",
+    "main.js": "/github_user_battle/static/js/main.afe86413.js",
+    "index.html": "/github_user_battle/index.html",
+    "main.9f5b1e6e.css.map": "/github_user_battle/static/css/main.9f5b1e6e.css.map",
+    "main.afe86413.js.map": "/github_user_battle/static/js/main.afe86413.js.map"
   },
   "entrypoints": [
     "static/css/main.9f5b1e6e.css",
